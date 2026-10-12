@@ -11,6 +11,10 @@ import 'react-corruption/styles.css';
 
 import { VideoExample } from './VideoExample';
 
+// Public assets resolve against the Vite base ('/' in dev, '/react-corruption/'
+// on the GitHub Pages build), so hardcoded root paths don't 404 on the subpath.
+const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
+
 const advanced = [
   ['channelShift', 'Colour separation', 0, 6, 0.1],
   ['maxVector', 'Maximum displacement', 1, 40, 1],
@@ -407,19 +411,19 @@ export function App() {
             <CorruptImage
               ref={imageRef}
               className="images__item images__item--a"
-              src="/dandelion.png"
+              src={asset('/dandelion.png')}
               alt="Dandelion"
               {...controls}
             />
             <CorruptImage
               className="images__item images__item--b"
-              src="/sunflower.png"
+              src={asset('/sunflower.png')}
               alt="Sunflower"
               {...controls}
             />
             <CorruptImage
               className="images__item images__item--c"
-              src="/pink-zinnia.png"
+              src={asset('/pink-zinnia.png')}
               alt="Pink zinnia"
               {...controls}
             />

@@ -3,8 +3,9 @@ import { CorruptVideo, type CorruptVideoHandle } from 'react-corruption';
 
 type Mode = 'flowers' | 'webcam';
 
-/** A pre-rendered clip of three flowers each spinning in place, in demo/public. */
-const FLOWERS_SRC = '/flowers.mp4';
+/** A pre-rendered clip of three flowers each spinning in place, in demo/public.
+ *  Prefixed with the Vite base so it resolves on the GitHub Pages subpath. */
+const FLOWERS_SRC = `${import.meta.env.BASE_URL}flowers.mp4`;
 
 export function VideoExample() {
   const [source, setSource] = useState<HTMLVideoElement | null>(null);

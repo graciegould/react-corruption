@@ -79,6 +79,7 @@
     "verify": "pnpm run typecheck && pnpm run lint && pnpm run format:check",
     "demo": "pnpm run build && vite --config demo/vite.config.ts",
     "demo:dev": "vite --config demo/vite.config.ts",
+    "build:site": "pnpm run build && vite build --config demo/vite.config.ts",
     "test:browser": "node demo/verify.mjs",
     "test:engine": "node scripts/verify-setsource.mjs && node scripts/verify-motion.mjs",
     "prepack": "pnpm verify && pnpm build",

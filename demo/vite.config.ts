@@ -7,8 +7,17 @@ import { defineConfig } from 'vite';
  * exercises the same entry points and stylesheet as a consuming app.
  * Run `pnpm demo` to build and serve, or `pnpm dev` to rebuild while editing.
  */
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  // Local dev/preview serve from root; the production build (for GitHub Pages
+  // project page at /react-corruption/) uses the subpath base. Asset URLs in
+  // HTML/CSS are rewritten automatically; TSX string literals use
+  // import.meta.env.BASE_URL (see the flower/video sources).
+  base: command === 'build' ? '/react-corruption/' : '/',
   root: fileURLToPath(new URL('.', import.meta.url)),
+  build: {
+    outDir: fileURLToPath(new URL('./dist-site', import.meta.url)),
+    emptyOutDir: true,
+  },
   plugins: [react()],
   resolve: {
     alias: {
@@ -26,4 +35,4 @@ export default defineConfig({
     port: 5180,
     strictPort: true,
   },
-});
+}));

@@ -1,5 +1,6 @@
 node_modules/
 dist/
+demo/dist-site/
 *.tsbuildinfo
 *.tgz
 .DS_Store

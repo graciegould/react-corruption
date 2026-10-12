@@ -1,3 +1,4 @@
 dist
+demo/dist-site
 node_modules
 pnpm-lock.yaml

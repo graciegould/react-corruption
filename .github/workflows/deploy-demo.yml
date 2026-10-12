@@ -1,0 +1,60 @@
+name: Deploy demo to GitHub Pages
+
+on:
+  # Auto-deploy the playground whenever main changes.
+  push:
+    branches: [main]
+  # Allow a manual run from the Actions tab too.
+  workflow_dispatch:
+
+# Minimum permissions for Pages deployment via the official actions.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a newer run supersede a queued one, but never cancel a live deploy.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.4.2
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Builds the package (dist/) then the demo site (demo/dist-site/)
+      # with base '/react-corruption/'.
+      - name: Build site
+        run: pnpm run build:site
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: demo/dist-site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
