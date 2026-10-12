@@ -198,7 +198,7 @@ a:hover {
   border-radius: var(--radius);
   background: var(--surface);
 }
-.section__preview[data-demo='scrapbook'],
+.section__preview[data-demo='images'],
 .section__preview[data-demo='image'] {
   align-items: center;
 }
@@ -377,7 +377,7 @@ a:hover {
 }
 
 /* ---- Scrapbook collage ---- */
-.scrapbook {
+.images {
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -388,28 +388,28 @@ a:hover {
   min-height: 300px;
   padding: 20px;
 }
-.scrapbook__item {
+.images__item {
   width: clamp(130px, 24vw, 200px);
   height: auto;
   filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.18));
   transition: transform 0.2s ease;
 }
-.scrapbook__item--a {
+.images__item--a {
   transform: rotate(-7deg);
   margin-right: -14px;
   z-index: 1;
 }
-.scrapbook__item--b {
+.images__item--b {
   transform: rotate(4deg);
   z-index: 3;
   width: clamp(150px, 27vw, 230px);
 }
-.scrapbook__item--c {
+.images__item--c {
   transform: rotate(-3deg);
   margin-left: -14px;
   z-index: 2;
 }
-.scrapbook__item:hover {
+.images__item:hover {
   transform: rotate(0deg) scale(1.03);
   z-index: 5;
 }
@@ -591,10 +591,10 @@ a:hover {
   .demo-form__row button {
     flex: 1 1 auto;
   }
-  .scrapbook__item--a {
+  .images__item--a {
     margin-right: 0;
   }
-  .scrapbook__item--c {
+  .images__item--c {
     margin-left: 0;
   }
 }

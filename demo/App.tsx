@@ -399,26 +399,26 @@ export function App() {
       />
 
       <DemoSection
-        id="scrapbook"
+        id="images"
         title="Images"
         kind="image"
         render={({ controls, imageRef }) => (
-          <div className="scrapbook">
+          <div className="images">
             <CorruptImage
               ref={imageRef}
-              className="scrapbook__item scrapbook__item--a"
+              className="images__item images__item--a"
               src="/dandelion.png"
               alt="Dandelion"
               {...controls}
             />
             <CorruptImage
-              className="scrapbook__item scrapbook__item--b"
+              className="images__item images__item--b"
               src="/sunflower.png"
               alt="Sunflower"
               {...controls}
             />
             <CorruptImage
-              className="scrapbook__item scrapbook__item--c"
+              className="images__item images__item--c"
               src="/pink-zinnia.png"
               alt="Pink zinnia"
               {...controls}
