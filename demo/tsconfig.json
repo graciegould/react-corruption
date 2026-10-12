@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "react-corruption": ["../src/index.ts"],
+      "react-corruption/core": ["../src/core.ts"]
+    },
+    "rootDir": ".."
+  },
+  "include": ["*.tsx", "vite.config.ts"]
+}

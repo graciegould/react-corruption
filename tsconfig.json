@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+
+    /* Strict. This is a published library: a type hole here becomes a
+     * consumer's runtime bug, and they cannot patch it. */
+    "strict": true,
+    /* `noUncheckedIndexedAccess` is deliberately OFF. The engine is built on
+     * Float32Array / Uint8ClampedArray pixel buffers whose indices are in
+     * bounds by construction (derived from the buffer's own width/height).
+     * The flag cannot prove that, so it produced 18 false positives on hot
+     * loops and no real findings — the two genuine nullability bugs it did
+     * surface (IntersectionObserver entry lists) are now guarded explicitly.
+     * Matches the strictness of the repo this was extracted from. */
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": false,
+
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "dist",
+
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "verbatimModuleSyntax": true
+  },
+  "include": ["src", "tsup.config.ts"],
+  "exclude": ["node_modules", "dist", "example"]
+}

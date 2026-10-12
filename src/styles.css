@@ -1,0 +1,120 @@
+/* Import once: import 'react-corruption/styles.css'; */
+.corrupt-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--corruption-ground, transparent);
+}
+
+.corrupt-image__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.corrupt-image__canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.corrupt-image.is-corrupting .corrupt-image__canvas {
+  opacity: 1;
+}
+
+.corrupt-image.is-corrupting .corrupt-image__image {
+  opacity: 0;
+}
+
+.corrupt {
+  --corrupt-bleed: 0px;
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  vertical-align: top;
+  isolation: isolate;
+}
+
+.corrupt__content {
+  position: relative;
+  z-index: 0;
+}
+
+.corrupt__canvas {
+  position: absolute;
+  inset: calc(-1 * var(--corrupt-bleed));
+  width: calc(100% + 2 * var(--corrupt-bleed));
+  height: calc(100% + 2 * var(--corrupt-bleed));
+  z-index: 1;
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  image-rendering: pixelated;
+}
+
+/* Opacity preserves focus, hit testing, and semantics during the effect. */
+.corrupt.is-corrupting:not(.is-quiet) .corrupt__content {
+  opacity: 0;
+}
+
+.corrupt.is-corrupting:not(.is-quiet) .corrupt__canvas {
+  opacity: 1;
+}
+
+/* Keep focused controls visible for keyboard navigation. */
+.corrupt:has(:focus-visible) .corrupt__content {
+  opacity: 1;
+}
+
+.corrupt:has(:focus-visible) .corrupt__canvas {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .corrupt-image__canvas,
+  .corrupt__canvas {
+    display: none;
+  }
+
+  .corrupt-image.is-corrupting .corrupt-image__image,
+  .corrupt.is-corrupting:not(.is-quiet) .corrupt__content {
+    opacity: 1;
+  }
+}
+
+.corrupt-video {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 1px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.corrupt-video__canvas,
+.corrupt-video__original {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.corrupt-video__canvas {
+  image-rendering: pixelated;
+}
+.corrupt-video__original {
+  visibility: hidden;
+}
+.corrupt-video[data-original='true'] .corrupt-video__original {
+  visibility: visible;
+}
+.corrupt-video[data-original='true'] .corrupt-video__canvas {
+  visibility: hidden;
+}

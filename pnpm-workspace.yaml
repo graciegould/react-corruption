@@ -1,0 +1,4 @@
+# Single-package repo. This file exists only to declare which dependency
+# build scripts are allowed to run — pnpm refuses to install otherwise.
+allowBuilds:
+  esbuild: true

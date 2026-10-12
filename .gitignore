@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.tsbuildinfo
+*.tgz
+.DS_Store
+.env
+.env.*
+coverage/
+.eslintcache
+hq.config.json
