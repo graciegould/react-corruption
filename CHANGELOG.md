@@ -16,4 +16,5 @@ First public release of react-corruption.
 - `CorruptionEngine` and DOM capture utilities are available through `/core`.
 - Images preserve transparency and fall back to their original content.
 - Effects respect reduced motion, pause offscreen, and preserve DOM interaction.
-- The playground includes Text, Image, and Card examples with copyable React code.
+- The playground includes Text, Article, Images, Form, and Webcam examples,
+  each a live mini-playground with per-section controls and copyable React code.
