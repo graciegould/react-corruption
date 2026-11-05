@@ -1,9 +1,5 @@
 # react-corruption
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/graciegould/react-corruption/main/assets/corrupt-sunflower.png" alt="A sunflower breaking apart into glitched, channel-split pixels" width="360" />
-</p>
-
 Interactive pixel corruption for React. Wrap some content, move your pointer over it,
 and watch it distort. Move away to restore the original.
 
