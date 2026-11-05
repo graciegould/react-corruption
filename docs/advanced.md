@@ -21,11 +21,11 @@ content-specific intensity settings. Removing an override restores its default.
 | `resolutionScale` | Buffer size relative to CSS size. Lower is faster and blockier.    |
 | `decay`           | Motion retained each frame. Lower values settle faster.            |
 | `healRate`        | Fraction blended back to the original each frame. `0` never heals. |
-| `channelShift`    | Colour separation along moving edges.                              |
+| `channelShift`    | Color separation along moving edges.                               |
 | `maxVector`       | Maximum displacement per block.                                    |
 | `influenceRadius` | Pointer influence radius in internal pixels.                       |
 | `force`           | Pointer movement strength.                                         |
-| `floodThreshold`  | Motion threshold for blocks to flatten in colour.                  |
+| `floodThreshold`  | Motion threshold for blocks to flatten in color.                   |
 | `edgeFade`        | Transparency fade at the buffer boundary. `0` disables it.         |
 | `travelFade`      | Fade displaced blocks by travel distance. `0` disables it.         |
 | `alpha`           | Preserve transparency. Always enabled for DOM content.             |
@@ -100,3 +100,20 @@ frame-driven source. `setSource` also accepts `fit` and `motionStrength`.
 `DEFAULT_OPTIONS`, `CorruptionOptions`, `CorruptionSource`, `SetSourceOptions`,
 `rasterizeElement`, and `RasterizeResult` are available from `/core`. These exports are also available from the package root. The engine's `DEFAULT_OPTIONS` describe the bare engine,
 not the content-specific React defaults.
+
+## Video and camera details
+
+`CorruptVideo` never requests camera access, changes playback, or stops a source your
+app owns.
+
+- **Autoplay:** handle a rejected `play()` promise and offer a Play button if autoplay
+  is blocked.
+- **Webcam:** pass a playing video whose `srcObject` is your camera stream, and stop the
+  stream's tracks when you are done with it.
+- **Fallback:** zero intensity, `disabled`, or reduced motion shows the original video;
+  `paused` also freezes it. A failed effect falls back to original frames. Media loading
+  errors stay your app's responsibility.
+- **CORS:** use a same-origin video, or a CORS-enabled source with
+  `crossOrigin="anonymous"`.
+- **Performance:** effects pause offscreen, in hidden tabs, and when the source stops
+  playing.
